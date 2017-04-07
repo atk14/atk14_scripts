@@ -1,0 +1,40 @@
+###################################
+#
+# Completion for ./scripts/deploy
+#
+###################################
+_atk14_deploy_tab_complete () {
+	local cur words
+
+	COMPREPLY=()
+
+	cur="${COMP_WORDS[COMP_CWORD]}"
+	cmd="${COMP_WORDS[0]} -l"
+	words=`${cmd}`
+
+	COMPREPLY=( $(compgen -W "${words}" -- ${cur}) )
+	return 0
+}
+
+complete -F _atk14_deploy_tab_complete deploy
+
+
+#######################################
+#
+# Completion for ./scripts/robot_runner
+#
+#######################################
+_atk14_robot_runner_tab_complete () {
+
+	local cur prev opts
+
+	COMPREPLY=()
+
+	cur="${COMP_WORDS[COMP_CWORD]}"
+	words=`ls -1 robots/|grep _robot.php|grep -v application_robot.php`
+
+	COMPREPLY=( $(compgen -W "${words}" -- ${cur}) )
+	return 0
+}
+
+complete -F _atk14_robot_runner_tab_complete robot_runner
