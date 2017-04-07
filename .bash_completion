@@ -1,5 +1,26 @@
 ###################################
 #
+# Completion for ./scripts/dbconsole
+#
+###################################
+_atk14_dbconsole_tab_complete () {
+	local cur words
+
+	COMPREPLY=()
+
+	cur="${COMP_WORDS[COMP_CWORD]}"
+	cmd_dbconsole="${COMP_WORDS[0]} -l"
+	words=`${cmd_dbconsole}`
+
+	COMPREPLY=( $(compgen -W "${words}" -- ${cur}) )
+	return 0
+}
+
+complete -F _atk14_dbconsole_tab_complete dbconsole
+
+
+###################################
+#
 # Completion for ./scripts/deploy
 #
 ###################################
@@ -31,7 +52,8 @@ _atk14_robot_runner_tab_complete () {
 	COMPREPLY=()
 
 	cur="${COMP_WORDS[COMP_CWORD]}"
-	words=`ls -1 robots/|grep _robot.php|grep -v application_robot.php`
+	words=`ls -1 robots/|grep _robot.php|grep -v application_robot.php | cut -d "." -f 1`
+
 
 	COMPREPLY=( $(compgen -W "${words}" -- ${cur}) )
 	return 0
