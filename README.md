@@ -37,5 +37,7 @@ This script will create dictionary in `~/.vim/tags_atk14`
 Then edit your `~/.vimrc` file and add these lines if you don't have it already
 ```
 # Omni completion for Atk14
-set tags=~/.vim/tags_atk14
+set tags+=~/.vim/tags_atk14
 ```
+### Usage
+You can use for example Supertab plugin (https://github.com/ervandew/supertab) which allows you to use <TAB> key for your code completion needs.
