@@ -60,3 +60,30 @@ _atk14_robot_runner_tab_complete () {
 }
 
 complete -F _atk14_robot_runner_tab_complete robot_runner
+
+
+#######################################
+#
+# Completion for ./scripts/shell
+#
+#######################################
+_atk14_shell_tab_complete () {
+
+	local cur prev opts
+	# we expect that this construction takes us to the application root
+	script_path=`dirname ${COMP_WORDS[0]}`
+	script_path=`dirname $script_path`
+
+	deploy_filename="${script_path}/config/deploy.yml"
+
+	COMPREPLY=()
+
+	cur="${COMP_WORDS[COMP_CWORD]}"
+	words=""
+	[ -f $deploy_filename ] && words=`egrep "^[a-z]+:" $deploy_filename |cut -f1 -d":"`
+
+	COMPREPLY=( $(compgen -W "${words}" -- ${cur}) )
+	return 0
+}
+
+complete -F _atk14_shell_tab_complete shell
