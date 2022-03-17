@@ -80,7 +80,7 @@ _atk14_shell_tab_complete () {
 
 	cur="${COMP_WORDS[COMP_CWORD]}"
 	words=""
-	[ -f $deploy_filename ] && words=`egrep "^[a-z]+:" $deploy_filename |cut -f1 -d":"`
+	[ -f $deploy_filename ] && words=`egrep "^[a-z0-9_-]+:" $deploy_filename |cut -f1 -d":"`
 
 	COMPREPLY=( $(compgen -W "${words}" -- ${cur}) )
 	return 0
